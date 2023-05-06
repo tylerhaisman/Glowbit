@@ -216,6 +216,7 @@ const Gameboard = (props) => {
           newDriver[i][j] = { isClicked: false, value: getRandomValue() };
         }
       }
+      newDriver[0][0].canBe = true;
       return newDriver;
       });  
       document.getElementById("aftergame").style.visibility = "hidden";
