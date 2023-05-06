@@ -2,46 +2,53 @@ import { useState } from 'react';
 
 import Cell from './Cell';
 
-// function getRandomValue() {
-//   let max = 36;
-//   let min = 1;
-//   return Math.floor(Math.random() * (max - min) + min);
-// }
-
+//initializing table values
 let previousRow = -1;
 let previousCol = -1;
+
+//initializing time-tracking values
 var start = 0;
 var totalTime = 0;
 
+//initializing count of successful clicks
 let count = 0;
 
 const Gameboard = (props) => {
 
+  //initializing game tracking values
   let gameOver = false;
   let win = false;
 
+  //initializing level value using the level prop passed into "Gameboard"
   let currentLevel = props.level;
 
+  //initializing number of rows and columns which will each be 1 greater than the current level
   let r = currentLevel + 1;
   let c = currentLevel + 1;
 
+  //initializing the random number generator
   function getRandomValue() {
     let max = r * c;
     let min = 1;
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  //initializing the gameboard 2D array
   const [driver, setDriver] = useState(() => {
     const newDriver = [];
     for (let i = 0; i < r; i++) {
       newDriver[i] = [];
       for (let j = 0; j < c; j++) {
-        newDriver[i][j] = { isClicked: false, value: getRandomValue() };
+        //essentially the array holds a JavaScript object with three key-value pairs
+        newDriver[i][j] = { isClicked: false, value: getRandomValue(), canBe: false };
       }
     }
+    //setting that the first node in the upper left can be clicked
+    newDriver[0][0].canBe = true;
     return newDriver;
   });
 
+  //initializing memoization table for solution computation
   const memoizationTable = [];
   for (let i = 0; i < r; i++) {
     const rowCells = [];
@@ -54,6 +61,7 @@ const Gameboard = (props) => {
   let numRows = memoizationTable.length;
   let numCols = memoizationTable[0].length;
 
+  //calculating the global solution using the values from the memoization table
     memoizationTable[0][0] = driver[0][0].value;
   for (let row = 1; row < numRows; row++) {
     memoizationTable[row][0] = memoizationTable[row - 1][0] + driver[row][0].value;
@@ -73,28 +81,55 @@ const Gameboard = (props) => {
     }
   }
 
+  //target sum == the number in the lower right-hand corner of the memoization table
   let targetSum = memoizationTable[numRows - 1][numCols - 1];
 
+  //function that runs every time a user clicks on a table cell
   const handleClick = (row, col) => {
     if(!gameOver){
+      //checking to see if the cell "can" be clicked (must be to the immediate right of the previous cell or immediately beneath)
       if((row - 1 == previousRow && col == previousCol) || (row == previousRow && col - 1 == previousCol) || ((row == 0 && col == 0) && driver[row][col].isClicked == false)){
         setDriver(prevDriver => {
           count++;
           if(count == 1){
+            //running stopwatch to track execution time
             start = new Date().getTime();
           }
           const newDriver = [...prevDriver];
+
+          //setting the cell that was clicked to true
           newDriver[row][col].isClicked = !newDriver[row][col].isClicked;
+
+          //checking to see if the next cells that can be clicked are in bounds
+          if(row + 1 < newDriver.length){
+            //setting can be clicked to true
+            newDriver[row + 1][col].canBe = true;
+          }
+          if(col + 1 < newDriver.length){
+            //setting can be clicked to true
+            newDriver[row][col + 1].canBe = true;
+          }
+          //updating the current cell so it can no longer be "clicked" as well as the other cell that may have been set to true
+          newDriver[row][col].canBe = false;
+          if((row - 1 >= 0) && (col + 1 < newDriver[0].length)){
+            newDriver[row - 1][col + 1].canBe = false;
+          }
+          if((col - 1 >= 0) && (row + 1 < newDriver.length)){
+            newDriver[row + 1][col - 1].canBe = false;
+          }
+
+          //updating previousRow and previousCol
           previousRow = row;
           previousCol = col;
+
           return newDriver;
         });
       }
     }
   };
 
+  //summing the currently isClicked nodes
   let currentSum = 0;
-
   const gameboardRows = [];
   for (let i = 0; i < r; i++) {
     const rowCells = [];
@@ -102,6 +137,7 @@ const Gameboard = (props) => {
       if(driver[i][j].isClicked){
         currentSum += driver[i][j].value;
       }
+      //if the sum of all clicked nodes is equal to the target sum and the game is over, player wins
       if(driver[r - 1][c - 1].isClicked && currentSum == targetSum){
         gameOver = true;
         win = true;
@@ -115,14 +151,8 @@ const Gameboard = (props) => {
         document.getElementById("winstatus").style.textShadow = "0 0 40px #1aff00";
         document.getElementById("winstatus").style.color = "#1aff00";
         document.getElementById("endbtn").textContent = "Next Level";
-        // var button = document.createElement("button");
-        // button.innerHTML = "Next Level";
-        // var buttons = document.getElementById("buttons");
-        // buttons.appendChild(button);
-        // button.addEventListener ("click", function() {
-        //   handleReset();
-        // });
       }
+      //if the sum of all clicked nodes is not equal to the target sum and the game is over, player loses
       if(driver[r - 1][c - 1].isClicked && currentSum != targetSum){
         gameOver = true;
         win = false;
@@ -136,14 +166,8 @@ const Gameboard = (props) => {
         document.getElementById("winstatus").style.textShadow = "0 0 40px #ff0000";
         document.getElementById("winstatus").style.color = "#ff0000";
         document.getElementById("endbtn").textContent = "Play Again";
-        // var button = document.createElement("button");
-        // button.innerHTML = "Play Again";
-        // var buttons = document.getElementById("buttons");
-        // buttons.appendChild(button);
-        // button.addEventListener ("click", function() {
-        //   handleRefresh();
-        // });
       }
+      //pushing all cells to the row
       rowCells.push(
         <Cell
           key={`${i}-${j}`}
@@ -152,12 +176,15 @@ const Gameboard = (props) => {
           onClick={() => handleClick(i, j)}
           isGameOver={gameOver}
           winStatus={win}
+          canBeClicked={driver[i][j].canBe}
         />
       );
     }
+    //pushing all rows to the gameboard
     gameboardRows.push(<tr key={i}>{rowCells}</tr>);
   }
 
+  //resetting the gameboard after the user clicks a button ("Next Level" or "Play Again")
   const handleReset = () => {
     if(!win){
       window.location.reload();
@@ -190,16 +217,14 @@ const Gameboard = (props) => {
         }
       }
       return newDriver;
-      });
-      // additional reset logic goes here
-  
+      });  
       document.getElementById("aftergame").style.visibility = "hidden";
     }
   };
 
-  const handleRefresh = () => {
-    window.location.reload();
-  };
+  // const handleRefresh = () => {
+  //   window.location.reload();
+  // };
 
   return (
           <div className="gameboard">
@@ -213,9 +238,7 @@ const Gameboard = (props) => {
             <p id="time"></p>
           </div>
           <div id="buttons" className="buttons">
-            {/* <button onClick={handleRefresh} id="endbtn">Play Again</button> */}
             <button onClick={handleReset} id="endbtn">Next Level</button>
-            {/* <button>Next Level</button> */}
           </div>
           </div>
     </div>

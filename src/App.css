@@ -94,9 +94,15 @@ header .options .howtoplay{
   background-color: #ffffff2e;
   text-shadow: 0 0 20px #ffffff65;
   text-align: center;
+  /* animation: pulsing 2s ease-in-out infinite */
 }
 .gameboard table th:hover{
   box-shadow: 0 0 40px #ffffff25;
+}
+@keyframes pulsing {
+  0% { background-color: #ffffff2e; }
+  50%  { background-color: #ffffff48; }
+  100%   { background-color: #ffffff2e; }   
 }
 .gameover{
   text-transform: uppercase;
@@ -147,127 +153,3 @@ footer a{
 footer a:hover{
   text-decoration: underline;
 }
-/* *{
-  margin: 0;
-  padding: 0;
-}
-html, body {
-  height: 100%;
-  margin: 0;
-}
-.content{
-  max-width: 1500px;
-  margin: auto;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.App{
-  background-color: #171717;
-  text-align: center;
-}
-.page{
-  background-image: radial-gradient(#3f43bf6a, #171717);
-  min-height: 100vh;
-  position: relative;
-}
-button{
-  padding: 15px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.151);
-  border-width: 0;
-  color: #fff;
-  font-family: p;
-  font-size: 16px;
-  position: relative;
-  transition: 0.2s;
-}
-button:hover{
-  background-color: rgba(255, 255, 255, 0.294);
-} */
-/* HEADER */
-/* header .title{
-  font-family: title;
-  text-align: center;
-  padding: 40px;
-  padding-bottom: 0;
-  font-size: 35px;
-  color: white;
-  text-shadow: 0 0 20px #fff;
-} */
-/* GAMEBOARD */
-/* .gameboard{
-  width: 800px;
-  height: 800px;
-  margin: auto;
-  margin-top: 50px;
-  border-radius: 10px;
-}
-.gameboard table{
-  position: relative;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  table-layout: fixed;
-  color: white;
-  font-family: title;
-  text-transform: uppercase;
-  font-size: 30px;
-}
-.gameboard table th{
-  border-radius: 10px;
-  transition: 0.1s;
-  background-color: #ffffff2e;
-  text-shadow: 0 0 20px #ffffff65;
-  text-align: center;
-}
-.gameboard table th:hover{
-  box-shadow: 0 0 40px #ffffff25;
-}
-.gameboard .bit{
-  width: 60%;
-  height: 60%;
-  margin: auto;
-  background: transparent;
-  border-style: solid;
-  border-color: #ffffff;
-  border-width: 2px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #ffffff, inset 0 0 10px #ffffff;
-}
-.gameover{
-  text-transform: uppercase;
-  font-family: title;
-  text-align: center;
-  padding: 40px;
-  padding-bottom: 0;
-  color: white;
-  text-shadow: 0 0 20px #fff;
-  transition: 0.2s;
-  visibility: hidden;
-  background: transparent;
-  position: relative;
-}
-.gameover h1{
-  font-size: 50px;
-}
-.gameover h2{
-  padding-top: 20px;
-  font-size: 30px;
-}
-.runtime{
-  color: #fff;
-  padding: 20px;
-  padding-bottom: 30px;
-  font-family: p;
-  text-shadow: 0 0 20px #fff;
-  transition: 0.2s;
-  text-transform: capitalize;
-}
-.buttons button{
-  margin-left: 5px;
-  margin-right: 5px;
-}
-.play{
-  height: 100%;
-} */

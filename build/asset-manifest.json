@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Glowbit/static/css/main.681b05ca.css",
+    "main.js": "/Glowbit/static/js/main.09d2b0b2.js",
+    "static/js/787.7c64dd22.chunk.js": "/Glowbit/static/js/787.7c64dd22.chunk.js",
+    "static/media/DelightBold.otf": "/Glowbit/static/media/DelightBold.3ae872436a860760c73e.otf",
+    "static/media/Brutel-Medium.otf": "/Glowbit/static/media/Brutel-Medium.629db9a929e709535b5c.otf",
+    "index.html": "/Glowbit/index.html",
+    "main.681b05ca.css.map": "/Glowbit/static/css/main.681b05ca.css.map",
+    "main.09d2b0b2.js.map": "/Glowbit/static/js/main.09d2b0b2.js.map",
+    "787.7c64dd22.chunk.js.map": "/Glowbit/static/js/787.7c64dd22.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.681b05ca.css",
+    "static/js/main.09d2b0b2.js"
+  ]
+}
