@@ -71,29 +71,23 @@ header .options .howtoplay{
 }
 .gameboard table{
   z-index: 100;
-  width:60vw;
-  height:60vw;
+  width:80vw;
+  height:80vw;
   margin: auto;
   border-radius: 10px;
   table-layout: fixed;
   color: white;
   font-family: title;
   text-transform: uppercase;
-  font-size: 4vw;
-}
-@media(min-width: 1000px){
-  .gameboard table{
-    font-size: 40px;
-    height: 600px;
-    width: 600px;
-  }
 }
 .gameboard table th{
+  position: relative;
   border-radius: 10px;
   transition: 0.1s;
   background-color: #ffffff2e;
   text-shadow: 0 0 20px #ffffff65;
   text-align: center;
+  font-size: 6vw;
   /* animation: pulsing 2s ease-in-out infinite */
 }
 .gameboard table th:hover{
@@ -103,6 +97,15 @@ header .options .howtoplay{
   0% { background-color: #ffffff2e; }
   50%  { background-color: #ffffff48; }
   100%   { background-color: #ffffff2e; }   
+}
+@media(min-width: 1000px){
+  .gameboard table{
+    height: 600px;
+    width: 600px;
+  }
+  .gameboard table th{
+    font-size: 40px;
+  }
 }
 .gameover{
   text-transform: uppercase;

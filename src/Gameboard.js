@@ -21,6 +21,9 @@ const Gameboard = (props) => {
 
   //initializing level value using the level prop passed into "Gameboard"
   let currentLevel = props.level;
+  if(currentLevel > 8){
+    currentLevel = 8;
+  }
 
   //initializing number of rows and columns which will each be 1 greater than the current level
   let r = currentLevel + 1;

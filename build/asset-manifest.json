@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Glowbit/static/css/main.fa754ffe.css",
-    "main.js": "/Glowbit/static/js/main.b45c1c61.js",
+    "main.js": "/Glowbit/static/js/main.7ef2fdaf.js",
     "static/js/787.7c64dd22.chunk.js": "/Glowbit/static/js/787.7c64dd22.chunk.js",
     "static/media/DelightBold.otf": "/Glowbit/static/media/DelightBold.3ae872436a860760c73e.otf",
     "static/media/Brutel-Medium.otf": "/Glowbit/static/media/Brutel-Medium.629db9a929e709535b5c.otf",
     "index.html": "/Glowbit/index.html",
     "main.fa754ffe.css.map": "/Glowbit/static/css/main.fa754ffe.css.map",
-    "main.b45c1c61.js.map": "/Glowbit/static/js/main.b45c1c61.js.map",
+    "main.7ef2fdaf.js.map": "/Glowbit/static/js/main.7ef2fdaf.js.map",
     "787.7c64dd22.chunk.js.map": "/Glowbit/static/js/787.7c64dd22.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fa754ffe.css",
-    "static/js/main.b45c1c61.js"
+    "static/js/main.7ef2fdaf.js"
   ]
 }
