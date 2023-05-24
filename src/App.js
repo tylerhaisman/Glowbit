@@ -19,7 +19,7 @@ function App() {
             <h1>GLOWBIT</h1>
           </div>
           <div className="options">
-            <button class="howtoplay">How To Play</button>
+            <a href="https://github.com/tylerhaisman/Glowbit/blob/main/README.md"><button class="howtoplay">How To Play</button></a>
           </div>
         </div>
         </header>
@@ -30,7 +30,7 @@ function App() {
         </section>
         <footer>
           <p>© 2023 <a href='https://tylerhaisman.com'>Tyler Haisman</a></p>
-          <button class="about">About The Game</button>
+          <a href="https://github.com/tylerhaisman/Glowbit/blob/main/README.md"><button class="about">About The Game</button></a>
         </footer>
       </div>
     </div>
