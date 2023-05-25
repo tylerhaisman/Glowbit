@@ -5,6 +5,8 @@ Welcome to Glowbit! My name is Tyler Haisman and I look foward to walking you th
 ## About The Game
 After completing Data Structures and Algorithms in Spring 2023, I wanted to see how I could implement some of the programming concepts I learned into some sort of web application. I made this game in an effort to make dynamic programming concepts into a challenging logic game.
 
+Additionally, I made this game to introduce myself to the React JS library which I have since improved in and even implemented into other apps!
+
 ## How To Play
 The object of Glowbit is to connect the upper leftmost node with the lower rightmost node with the continuous path with the greatest sum.
 
