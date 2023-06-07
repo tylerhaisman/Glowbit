@@ -26,6 +26,12 @@
   padding-left: 30px;
   padding-right: 30px;
 }
+@media(max-width: 700px){
+  .content{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 button{
   padding: 15px;
   border-radius: 10px;
@@ -79,6 +85,13 @@ header .options .howtoplay{
   color: white;
   font-family: title;
   text-transform: uppercase;
+}
+@media(max-width: 700px){
+  .gameboard table{
+    z-index: 100;
+    width:90vw;
+    height:90vw;
+  }
 }
 .gameboard table th{
   position: relative;
