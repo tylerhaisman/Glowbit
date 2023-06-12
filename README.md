@@ -33,3 +33,6 @@ User has the option to increment the level of the game. If the user chooses to g
 User has the option to restart the game at level 1.
 
 Enjoy!
+
+### Developer notes:
+"yarn deploy" to deploy.
